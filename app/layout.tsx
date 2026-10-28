@@ -1,0 +1,30 @@
+"use client";
+import React from "react";
+import "./css/globals.css";
+import { Provider } from "react-redux";
+import { Suspense } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.png" type="image/svg+xml" />
+        {/* <link rel="manifest" href="/manifest.json" /> */}
+        <meta name="theme-color" content="#5d87ff" />
+       
+      </head>
+      <body className="">
+          <Suspense>
+            {children}
+
+            <ToastContainer autoClose={false} draggable={false} />
+          </Suspense>
+      </body>
+    </html>
+  );
+}

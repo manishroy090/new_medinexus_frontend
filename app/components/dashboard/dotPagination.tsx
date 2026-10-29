@@ -4,11 +4,11 @@ import { useEffect } from "react";
 interface Values {
   currentPage: number;
   limit: number;
-  data: number;
-  length: string;
-  setData: (data: number) => void;
-  setCurrentPage: (data: number) => void;
-  slice: (data: number) => void;
+  data: number[];
+  length: number;
+  setData: (data: number[]) => void;
+  setCurrentPage: (page: number) => void;
+  slice: (data: number[]) => void;
   // length: (data: number) => void;
 }
 

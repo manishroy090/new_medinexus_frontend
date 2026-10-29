@@ -132,7 +132,7 @@ export const UserType = () => {
           {/* Pagination */}
           <div className="relative mt-6 flex justify-center pb-2">
             <Pagination
-              data={roles}
+              data={roles as unknown as number[]}
               setData={setData}
               limit={4}
               currentPage={currentPage}

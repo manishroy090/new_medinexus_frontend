@@ -4,18 +4,19 @@ import { useEffect } from "react";
 interface Values {
   currentPage: number;
   limit: number;
-  data: string;
-//   setCurrentPage: number;
-//   setData: number;
-//   slice: Function;
+  data: number;
+  length: string;
+  setData: (data: number) => void;
+  setCurrentPage: (data: number) => void;
+  slice: (data: number) => void;
+  // length: (data: number) => void;
 }
 
-const DotPagination = (props:Values) => {
-  
+const DotPagination = (props: Values) => {
   useEffect(() => {
     const start = (props.currentPage - 1) * props.limit;
     props.setData(props.data.slice(start, start + props.limit));
-  }, [props.data, props.currentPage, props.limit, props.setData]);
+  }, [props.currentPage]);
 
   return (
     <div className="flex justify-center gap-2 fixed bottom-6">

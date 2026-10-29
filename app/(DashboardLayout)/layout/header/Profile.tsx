@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react'
 import * as profileData from './data'
 import SimpleBar from 'simplebar-react'
 import { Button } from '@components/dashboard/button'
-import { logout } from '../../../services/Auth'
+// import { logout } from '../../../services/Auth'
 import { useRouter } from 'next/navigation'
 
 import {
@@ -22,11 +22,11 @@ const Profile = () => {
   const router = useRouter();
 
   const logoutUser =async( ) =>{
-    const log =   await logout();
-    if(log){
+    // const log =   await logout();
+    // if(log){
        
-      router.push("/auth/login");
-    }
+    //   router.push("/auth/login");
+    // }
   }
 
 

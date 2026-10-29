@@ -32,9 +32,9 @@ export default function Layout({
     <div className="h-screen w-screen overflow-hidden bg-gray-100">
       
       {/* ================= SIDEBAR ================= */}
-      <aside className="fixed left-0 top-0 z-40 hidden xl:block">
+      {/* <aside className="fixed left-0 top-0 z-40 hidden xl:block">
         <Sidebar />
-      </aside>
+      </aside> */}
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="xl:ml-72 h-screen flex flex-col overflow-hidden">

@@ -5,7 +5,7 @@ import { Button } from "@components/dashboard/button";
 import { Input } from "@components/dashboard/input";
 import { Checkbox } from "@components/dashboard/checkbox";
 import { Label } from "@components/dashboard/label";
-import { login } from "@services/Auth";
+// import { login } from "@services/Auth";
 
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -24,15 +24,15 @@ export const Login = () => {
   } = useForm({ resolver: yupResolver(Loginschema) });
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    const res = await login(data);
-    if (res.status === 401) {
-      // toaster(res.data.message, "danger");
-    }
+    // const res = await login(data);
+    // if (res.status === 401) {
+    //   // toaster(res.data.message, "danger");
+    // }
 
-    const { success } = res.data;
-    if (success) {
-      router.push("/");
-    }
+    // const { success } = res.data;
+    // if (success) {
+    //   router.push("/");
+    // }
   };
 
   return (

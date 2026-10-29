@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { Label } from '@components/dashboard/label';
 import { Input } from '@components/dashboard/input';
 import { useEffect, useState } from "react";
-import { hoshpitalRegister } from "../../services/Auth";
+// import { hoshpitalRegister } from "../../services/Auth";
 import { getAllCountries } from "@services/Config";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -61,11 +61,11 @@ export const Register = () => {
 
 
   const onSubmit: SubmitHandler<Ionboarding> = async(data) => {
-    const res = await hoshpitalRegister(data);
-    const {success} = res.data;
-     if(success){
-      router.push('/')
-    }
+    // const res = await hoshpitalRegister(data);
+    // const {success} = res.data;
+    //  if(success){
+    //   router.push('/')
+    // }
   }
 
 

@@ -6,19 +6,20 @@ import Slider from "react-slick";
 
 
 export const Otp = () => {
-  const inputs = useRef([]);
+  const inputs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleChange = (e, index) => {
-    const value = e.target.value;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const value = e.target.value ;
 
     if (value && index < 5) {
-      inputs.current[index + 1].focus();
+      inputs.current[index + 1]?.focus();
     }
   };
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && !e.target.value && index > 0) {
-      inputs.current[index - 1].focus();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    const value = e.currentTarget.value ;
+    if (e.key === "Backspace" && !value && index > 0) {
+      inputs.current[index - 1]?.focus();
     }
   };
 
@@ -63,7 +64,7 @@ export const Otp = () => {
               {[0, 1, 2, 3, 4, 5].map((index) => (
                 <input
                   key={index}
-                  ref={(el) => (inputs.current[index] = el)}
+                  ref={(el) => {inputs.current[index] = el}}
                   type="text"
                   inputMode="numeric"
                   maxLength={1}

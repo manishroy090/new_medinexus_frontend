@@ -7,23 +7,18 @@ import { Irole } from "@/interface/roles";
 import roles from "@/data/roles";
 
 export const UserType = () => {
-
-    
   const [currentPage, setCurrentPage] = useState<number>(1);
-  
 
   const [data, setData] = useState<any>(roles);
 
   return (
     <>
-      <div className="flex gap-10 ">
-        
+      <div className="flex ml-10 ">
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center h-screen w-1/2 pt-16 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
-          <h3 className="text-white px-6 py-3 mb-12 mt-6 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
+        <div className="flex flex-col items-center h-[calc(100vh-70px)] w-[48%] mt-0 ml-4 mb-0 pt-10 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
+          <h3 className="text-white px-6 py-3 mb-8 mt-4 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
             Healthcare Management System
           </h3>
-
           <div className="flex flex-col font-bold">
             <h1 className="text-5xl text-white tracking-tight">
               Better care starts with
@@ -33,17 +28,15 @@ export const UserType = () => {
               the right team.
             </h1>
           </div>
-
           <div
-            className="mt-8 min-h-0 w-full flex-1 bg-contain bg-center bg-no-repeat"
+            className="mt-4 relative top-17.5 w-800 flex-1 bg-[length:100%_100%] bg-bottom bg-no-repeat"
             style={{ backgroundImage: "url('/hrm_image/userRolebg.svg')" }}
           />
         </div>
 
         {/* RIGHT SIDE */}
         <div className="w-full max-w-3xl mx-auto">
-          
-          <div className="flex flex-col text-center border border-gray-100 rounded-3xl mb-10 mt-6 px-6 py-5 shadow-lg">
+          <div className="flex flex-col text-center border border-gray-100 mb-10 mt-6 px-6 py-5 shadow-lg">
             <h1 className="text-5xl font-bold tracking-tight text-gray-700">
               Who are you?
             </h1>
@@ -54,13 +47,20 @@ export const UserType = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-5">
-            {data.map((roles:Irole) => (
+            {data.map((roles: Irole) => (
               <Link
-                key={roles.id} href={roles.href} title={roles.title}
-                className="group relative border border-gray-200 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-xl overflow-hidden">
-                
+                key={roles.id}
+                href={roles.href}
+                title={roles.title}
+                className="group relative border border-gray-200 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-xl overflow-hidden"
+              >
                 <div className="relative h-74 overflow-hidden">
-                  <Image src={roles.image} alt={roles.title} layout="fill" className="p-2"/>
+                  <Image
+                    src={roles.image}
+                    alt={roles.title}
+                    layout="fill"
+                    className="p-2"
+                  />
                 </div>
 
                 <div className="text-base text-center font-bold bg-yellow-200 px-2 py-3 text-green-600 tracking-wide transition-all duration-300 group-hover:bg-yellow-400">

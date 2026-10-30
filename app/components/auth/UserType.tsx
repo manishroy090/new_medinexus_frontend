@@ -78,7 +78,7 @@ export const UserType = () => {
       <div className="flex gap-10 ">
         
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center h-screen w-1/2 pt-16 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
+        <div className="flex flex-col items-center w-1/2 pt-16 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
           <h3 className="text-white px-6 py-3 mb-12 mt-6 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
             Healthcare Management System
           </h3>
@@ -94,15 +94,15 @@ export const UserType = () => {
           </div>
 
           <div
-            className="mt-8 min-h-0 w-full flex-1 bg-contain bg-center bg-no-repeat"
+            className="relative mt-8 w-full flex-1 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/hrm_image/userRolebg.svg')" }}
           />
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-full max-w-3xl mx-auto">
+        <div className="w-full h-screen max-w-3xl mx-auto">
           
-          <div className="flex flex-col text-center border border-gray-100 rounded-3xl mb-10 mt-6 px-6 py-5 shadow-lg">
+          <div className="flex flex-col text-center border border-gray-100 mb-10 mt-6 px-6 py-5 shadow-lg">
             <h1 className="text-5xl font-bold tracking-tight text-gray-700">
               Who are you?
             </h1>

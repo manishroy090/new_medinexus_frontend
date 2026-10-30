@@ -13,10 +13,10 @@ export const UserType = () => {
 
   return (
     <>
-      <div className="flex ml-10 ">
+      <div className="flex ml-10">
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center h-[calc(100vh-70px)] w-[48%] mt-0 ml-4 mb-0 pt-10 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
-          <h3 className="text-white px-6 py-3 mb-8 mt-4 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
+        <div className="flex flex-col items-center h-[calc(90vh-60px)] w-[45%] mt-30 ml-10 pt-10 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
+          <h3 className="text-white px-6 mb-8 mt-4 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
             Healthcare Management System
           </h3>
           <div className="flex flex-col font-bold">
@@ -24,19 +24,19 @@ export const UserType = () => {
               Better care starts with
             </h1>
 
-            <h1 className="text-5xl bg-gradient-to-r from-blue-500 to-violet-400 bg-clip-text text-transparent tracking-tight py-3">
+            <h1 className="text-4xl bg-gradient-to-r from-blue-500 to-violet-400 bg-clip-text text-transparent tracking-tight pt-3 pb-1.5">
               the right team.
             </h1>
           </div>
           <div
-            className="mt-4 relative top-17.5 w-800 flex-1 bg-[length:100%_100%] bg-bottom bg-no-repeat"
+            className="relative top-9 w-1000 flex-1 bg-[length:101%_101%] bg-bottom"
             style={{ backgroundImage: "url('/hrm_image/userRolebg.svg')" }}
           />
         </div>
 
         {/* RIGHT SIDE */}
         <div className="w-full max-w-3xl mx-auto">
-          <div className="flex flex-col text-center border border-gray-100 mb-10 mt-6 px-6 py-5 shadow-lg">
+          <div className="flex flex-col text-center mb-10 mt-10 px-6 py-5">
             <h1 className="text-5xl font-bold tracking-tight text-gray-700">
               Who are you?
             </h1>

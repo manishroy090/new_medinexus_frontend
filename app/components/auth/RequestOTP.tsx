@@ -74,9 +74,9 @@ const inputs = useRef<(HTMLInputElement | null)[]>([]);
 
   return (
     <>
-      <div className="flex gap-10">
+      <div className="flex ml-25">
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center h-screen w-1/2 pt-16 bg-gradient-to-br from-yellow-400 via-yellow-400 to-cyan-500 rounded-full">
+        <div className="flex flex-col items-center h-[calc(90vh-60px)] w-[45%] mt-15 ml-10 pt-10 bg-gradient-to-br from-yellow-400 via-yellow-400 to-cyan-500 rounded-full">
           <h3 className="text-white px-6 py-3 mb-12 mt-6 text-center border border-white rounded-lg font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-yellow-400 to-green-500">
             Securely open your account
           </h3>
@@ -90,7 +90,7 @@ const inputs = useRef<(HTMLInputElement | null)[]>([]);
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center justify-center w-1/2 ">
+        <div className="flex items-center justify-center w-1/2 relative right-10">
           <div className="w-full max-w-md rounded-3xl border border-gray-100 bg-white p-8 shadow-xl shadow-gray-200/60 sm:p-10">
             {/* OTP Verification Form */}
             <div className="w-full">

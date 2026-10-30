@@ -3,12 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/dashboard/dotPagination";
 import { useState } from "react";
+import { Irole } from "@/interface/roles";
 
 export const UserType = () => {
 
     
-  const [currentPage, setCurrentPage] = useState(1);
-  const roles: {id: number; title: string; image: string; href: string;}[] = [
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const roles: Irole[] = [
     {
       id: 1,
       title: "Hospital",
@@ -71,7 +72,7 @@ export const UserType = () => {
     },
   ];
 
-  const [data, setData] = useState(roles);
+  const [data, setData] = useState<any>(roles);
 
   return (
     <>
@@ -113,7 +114,7 @@ export const UserType = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-5">
-            {data.map((roles) => (
+            {data.map((roles:Irole) => (
               <Link
                 key={roles.id} href={roles.href} title={roles.title}
                 className="group relative border border-gray-200 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-xl overflow-hidden">
@@ -133,11 +134,10 @@ export const UserType = () => {
           <div className="relative mt-6 flex justify-center pb-2">
             <Pagination
               data={roles as unknown as number[]}
-              setData={setData}
               limit={4}
               currentPage={currentPage}
+              setData={setData}
               setCurrentPage={setCurrentPage}
-              paginationStyleType="dots"
             />
           </div>
         </div>

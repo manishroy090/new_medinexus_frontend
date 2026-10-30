@@ -3,12 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/dashboard/dotPagination";
 import { useState } from "react";
+import { Irole } from "@/interface/roles";
 
 export const UserType = () => {
 
     
-  const [currentPage, setCurrentPage] = useState(1);
-  const roles: {id: number; title: string; image: string; href: string;}[] = [
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const roles: Irole[] = [
     {
       id: 1,
       title: "Hospital",
@@ -71,14 +72,14 @@ export const UserType = () => {
     },
   ];
 
-  const [data, setData] = useState(roles);
+  const [data, setData] = useState<any>(roles);
 
   return (
     <>
       <div className="flex gap-10 ">
         
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center w-1/2 pt-16 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
+        <div className="flex flex-col items-center h-screen w-1/2 pt-16 bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-500 rounded-full">
           <h3 className="text-white px-6 py-3 mb-12 mt-6 text-center border border-white rounded-full font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-emerald-300 to-green-300">
             Healthcare Management System
           </h3>
@@ -94,15 +95,15 @@ export const UserType = () => {
           </div>
 
           <div
-            className="relative mt-8 w-full flex-1 bg-contain bg-center bg-no-repeat"
+            className="mt-8 min-h-0 w-full flex-1 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/hrm_image/userRolebg.svg')" }}
           />
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-full h-screen max-w-3xl mx-auto">
+        <div className="w-full max-w-3xl mx-auto">
           
-          <div className="flex flex-col text-center border border-gray-100 mb-10 mt-6 px-6 py-5 shadow-lg">
+          <div className="flex flex-col text-center border border-gray-100 rounded-3xl mb-10 mt-6 px-6 py-5 shadow-lg">
             <h1 className="text-5xl font-bold tracking-tight text-gray-700">
               Who are you?
             </h1>
@@ -113,7 +114,7 @@ export const UserType = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-5">
-            {data.map((roles) => (
+            {data.map((roles:Irole) => (
               <Link
                 key={roles.id} href={roles.href} title={roles.title}
                 className="group relative border border-gray-200 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-xl overflow-hidden">
@@ -133,11 +134,10 @@ export const UserType = () => {
           <div className="relative mt-6 flex justify-center pb-2">
             <Pagination
               data={roles as unknown as number[]}
-              setData={setData}
               limit={4}
               currentPage={currentPage}
+              setData={setData}
               setCurrentPage={setCurrentPage}
-              paginationStyleType="dots"
             />
           </div>
         </div>

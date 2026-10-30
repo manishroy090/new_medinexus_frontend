@@ -7,15 +7,14 @@ import { Label } from '@components/dashboard/label';
 import { Input } from '@components/dashboard/input';
 import { useEffect, useState } from "react";
 // import { hoshpitalRegister } from "../../services/Auth";
-import { getAllCountries } from "@services/Config";
+// import { getAllCountries } from "@services/Config";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Registerschema } from "../../schemas/Register.schema";
 import { Ionboarding } from "@interface/Ionboarding";
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/navigation'
-
-
+import countries from "@/data/countries";
 
 
 
@@ -34,24 +33,24 @@ export const Register = () => {
     
     
   };
-  const [countries, setCountries] = useState<any>();
+  // const [countries, setCountries] = useState<any>();
 
 
 
 
   //countries api call
-  useEffect(() => {
-    const AllCountries = async () => {
-      try {
-        const countries = await getAllCountries();
-        setCountries(countries);
-      } catch (error) {
-        console.log('error', error);
-      }
+  // useEffect(() => {
+  //   const AllCountries = async () => {
+  //     try {
+  //       const countries = await getAllCountries();
+  //       setCountries(countries);
+  //     } catch (error) {
+  //       console.log('error', error);
+  //     }
 
-    }
-    AllCountries();
-  }, []);
+  //   }
+  //   AllCountries();
+  // }, []);
 
 
 
@@ -169,7 +168,7 @@ export const Register = () => {
                     </option>
 
                     {countries?.map((country:any, index:any) => (
-                      <option className="text-black" key={index} value={country.id}>
+                      <option className="text-black" key={country.code} value={country.number}>
                         {country.title}
                       </option>
                     ))}

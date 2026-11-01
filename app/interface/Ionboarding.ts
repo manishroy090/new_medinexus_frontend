@@ -13,7 +13,9 @@
     address_line2?: string,
     city: string,
     state: string,
-    country_id: number
+    countryName: string
     logo?: string,
-    postal_code:string
+    postal_code:string,
+    role: string,
+    role_type: string
   }

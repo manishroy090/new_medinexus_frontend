@@ -26,10 +26,7 @@ const createApi = (baseURL:any) => {
     return api;
 };
 
-export const Axios = createApi(
-    "http://greenvally.localhost:8000/api/v1"
+export const authservice = createApi(
+    "http://localhost:8000/api/v1"
 );
 
-export const HospitalApi = createApi(
-    "http://greenvally.localhost:9000/api/v1/hospital"
-);

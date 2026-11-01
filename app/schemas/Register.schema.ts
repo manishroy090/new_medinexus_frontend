@@ -19,7 +19,7 @@ export const Registerschema = yup.object({
   address_line2: yup.string().optional(),
   city: yup.string().required("City is required"),
   state: yup.string().required("State is required"),
-  country_id: yup.number().required("Please select a country"),
+  countryName: yup.string().required("Please select a country"),
   logo:yup.string().optional(),
   postal_code: yup.string().required("Postal code is required"),
 }).required()

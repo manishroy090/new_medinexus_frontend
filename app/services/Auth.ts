@@ -1,14 +1,14 @@
-// import { Axios,HospitalApi } from "../libs/axios";
+import { authservice } from "../libs/axios";
 // import { useRouter } from "next/navigation";
-// import { Ionboarding } from "../interface/Ionboarding";
+import { Ionboarding } from "../interface/Ionboarding";
 // import toast, { Toaster } from "react-hot-toast";
 // import useToaster from "../hooks/useToaster";
 
 
-// export async function hoshpitalRegister(payload: Ionboarding) {
-//   const register = await Axios.post("auth/signup", payload);
-//   return register;
-// }
+export async function hoshpitalOnBoarding(payload: Ionboarding) {
+  const register = await authservice.post("auth/signup", payload);
+  return register;
+}
 
 
 

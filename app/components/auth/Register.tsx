@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { Label } from '@components/dashboard/label';
 import { Input } from '@components/dashboard/input';
 import { useEffect, useState } from "react";
-// import { hoshpitalRegister } from "../../services/Auth";
+import { hoshpitalOnBoarding } from "../../services/Auth";
 // import { getAllCountries } from "@services/Config";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,7 +15,8 @@ import { Ionboarding } from "@interface/Ionboarding";
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/navigation'
 import countries from "@/data/countries";
-
+import axios from "axios";
+import { string } from "yup";
 
 
 export const Register = () => {
@@ -60,14 +61,25 @@ export const Register = () => {
 
 
   const onSubmit: SubmitHandler<Ionboarding> = async(data) => {
-    // const res = await hoshpitalRegister(data);
-    // const {success} = res.data;
-    //  if(success){
-    //   router.push('/')
-    // }
+    try {
+    const updatedData= {
+      ...data,
+      role: "hospital",
+      role_type: "hospital"
+    }
+    const response = await hoshpitalOnBoarding(updatedData);
+    // const formData = await hoshpitalOnBoarding(data);
+    // const {success} = formData.data;
+    if (response.data.success) {
+      router.push("/");
+    }
+    else{
+      console.log("error",response.data.message);
+    }
+    }catch (error: unknown) {
+      console.log("error",error);
+    }
   }
-
-
 
 
 
@@ -158,7 +170,7 @@ export const Register = () => {
                     Country
                   </Label>
                   <select
-                    {...register("country_id")} className="h-10 text-sm bg-white text-black border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    {...register("countryName")} className="h-10 text-sm bg-white text-black border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     defaultValue=""
                     //  errors={errors}
 

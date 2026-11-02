@@ -17,7 +17,9 @@ import { useRouter } from 'next/navigation'
 import countries from "@/data/countries";
 import axios from "axios";
 import { string } from "yup";
-
+import { registerHospitalData } from "@/store/features/HospitalRegisterSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
 
 export const Register = () => {
     const router = useRouter()
@@ -54,33 +56,24 @@ export const Register = () => {
   // }, []);
 
 
+  const dispatch = useDispatch<AppDispatch>();
 
 
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(Registerschema) });
 
 
-  const onSubmit: SubmitHandler<Ionboarding> = async(data) => {
-    try {
-    const updatedData= {
-      ...data,
-      role: "hospital",
-      role_type: "hospital"
-    }
-    const response = await hoshpitalOnBoarding(updatedData);
-    // const formData = await hoshpitalOnBoarding(data);
-    // const {success} = formData.data;
-    if (response.data.success) {
+ const onSubmit: SubmitHandler<Ionboarding> = async (data) => {
+  try {
+    const response = await dispatch(registerHospitalData(data)).unwrap();
+
+    if (response.success) {
       router.push("/");
     }
-    else{
-      console.log("error",response.data.message);
-    }
-    }catch (error: unknown) {
-      console.log("error",error);
-    }
+  } catch (error) {
+    console.log("error", error);
   }
-
+};
 
 
 

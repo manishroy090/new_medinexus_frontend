@@ -4,6 +4,7 @@ import "./css/globals.css";
 import { Provider } from "react-redux";
 import { Suspense } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { StoreProvider } from "@/store/storeProvider";
 
 export default function RootLayout({
   children,
@@ -16,14 +17,14 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" type="image/svg+xml" />
         {/* <link rel="manifest" href="/manifest.json" /> */}
         <meta name="theme-color" content="#5d87ff" />
-       
       </head>
       <body className="">
+        <StoreProvider>
           <Suspense>
             {children}
-
             <ToastContainer autoClose={false} draggable={false} />
           </Suspense>
+        </StoreProvider>
       </body>
     </html>
   );

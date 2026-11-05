@@ -279,7 +279,6 @@ const Sidebar = () => {
           if (item.submenu) {
             return (
               <div key={i} className="space-y-1">
-                {/* MENU BUTTON */}
                 <button
                   onClick={() => toggleSubmenu(item.name)}
                   className={`w-full flex items-center justify-between px-2 py-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
@@ -291,7 +290,6 @@ const Sidebar = () => {
                       {item.icon}
                     </div>
 
-                    {/* LABEL */}
                     {!collapsed && (
                       <span className="text-[13px] font-medium truncate">
                         {item.name}
@@ -357,12 +355,10 @@ const Sidebar = () => {
               ${collapsed ? "justify-center" : ""}
               ${isActive ? "bg-yellow-100 text-[#14967f] font-semibold shadow-md" : "text-white/90 hover:bg-white/10 hover:translate-x-0.5"}`}
             >
-              {/* ACTIVE INDICATOR */}
               {isActive && (
                 <span className="absolute left-0 top-2 bottom-2 w-[3px] bg-[#14967f] rounded-r-full" />
               )}
 
-              {/* ICON */}
               <div
                 className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200 shrink-0
               ${isActive ? "bg-[#14967f]/10" : "group-hover:bg-white/10 group-hover:scale-105"}`}
@@ -370,7 +366,6 @@ const Sidebar = () => {
                 {item.icon}
               </div>
 
-              {/* LABEL */}
               {!collapsed && (
                 <div className="flex items-center justify-between w-full min-w-0 gap-2">
                   <span className="text-[13px] font-medium truncate">
@@ -391,9 +386,7 @@ const Sidebar = () => {
 
       {/* ================= FOOTER ================= */}
       <div className="border-t border-white/10 px-3 pt-3 pb-3 shrink-0">
-        {/* ADMIN PROFILE */}
         <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
-          {/* AVATAR */}
           <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 shadow-sm ring-2 ring-white/15">
             A
           </div>
@@ -409,25 +402,21 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* BRANDING */}
         <div
           className={`flex items-center gap-2 pt-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0
         ${collapsed ? "mt-2" : "mt-3 border-t border-white/10"}`}
         >
-          {/* HEARTBEAT IMAGE */}
           <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${collapsed ? "w-10 h-8" : "w-40 h-16"}`}>
             <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0} className="shrink-0 w-full h-100 object-contain" loading="eager"/>
           </div>
 
           {!collapsed && (
             <div className="flex flex-col items-center gap-2">
-              {/* BRAND NAME */}
               <h2 className="flex items-center justify-center gap-1 text-yellow-200 text-sm font-bold tracking-wide leading-tight">
                 <span className="font-extrabold">MediNexus</span>
                 <span className="font-semibold">Healthcare</span>
               </h2>
 
-              {/* TAGLINE */}
               <div className="flex items-center gap-2">
                 <span className="w-5 h-px bg-emerald-300/40" />
 

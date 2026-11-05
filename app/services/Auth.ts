@@ -17,10 +17,10 @@ export async function hoshpitalOnBoarding(payload: Ionboarding) {
 //   return login;
 // }
 
-// // export async function getMe() {
-// //   const AuthUser = await Axios.get("auth/me");
-// //   return AuthUser;
-// // }
+export async function getMe() {
+  const AuthUser = await authservice.get("auth/me");
+  return AuthUser;
+}
 
 // export async function logout() {
 //   const { data } = await Axios.post("auth/logout");

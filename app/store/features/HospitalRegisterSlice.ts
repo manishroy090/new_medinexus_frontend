@@ -5,7 +5,7 @@ import { Ionboarding } from "../../interface/Ionboarding";
 import axios from "axios";
 
 interface HospitalRegisterState {
-  hospitalRegister: any;
+  hospitalRegister: unknown;
   loading: boolean;
   error: string | null;
 }
@@ -32,6 +32,7 @@ export const registerHospitalData = createAsyncThunk(
       if (response.data.success) {
         return response.data;
       } else {
+        console.log("response data failed");
         return thunkAPI.rejectWithValue(response.data.message);
       }
 
@@ -50,7 +51,7 @@ export const registerHospitalData = createAsyncThunk(
 
 // Hospital Registration Slice
 const HospitalRegisterSlice = createSlice({
-  name: "hospitalRegister",
+  name: "hospitalRegister/",
   initialState,
 
   reducers: {

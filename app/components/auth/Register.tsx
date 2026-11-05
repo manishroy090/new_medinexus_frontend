@@ -25,6 +25,7 @@ export const Register = () => {
     const router = useRouter()
   
 
+    
   const settings = {
     dots: true,
     infinite: true,

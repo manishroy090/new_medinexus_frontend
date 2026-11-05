@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -20,6 +21,12 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import FullLogo from "../shared/logo/FullLogo";
 import path from "path";
+
+// ================= SIDEBAR PROPS =================
+interface SidebarProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const menu = [
   // ================= HOME =================
@@ -227,10 +234,10 @@ const menu = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({isSidebarOpen, setIsSidebarOpen,}: SidebarProps) => {
   const pathname = usePathname();
 
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
 
   const [openMenus, setOpenMenus] = useState({
     Laboratory: false,
@@ -250,47 +257,46 @@ const Sidebar = () => {
   return (
     <div
       className={`h-screen flex flex-col transition-all duration-300 text-white overflow-hidden shadow-2xl border-r border-white/10
-        ${collapsed ? "w-20" : "w-75"}`}
-      style={{ backgroundColor: "#14967f" }}
-    >
+        ${isSidebarOpen ? "w-72" : "w-20"}`} style={{ backgroundColor: "#14967f" }}>
+      
       {/* ================= LOGO ================= */}
       <div
         className={`flex items-center px-4 py-3 h-[76px] shrink-0 bg-yellow-200 text-black border-b border-black/5 transition-all duration-300
-        ${collapsed ? "justify-center" : "justify-between"}`}
-      >
-        {!collapsed && (
+        ${!isSidebarOpen ? "justify-center" : "justify-between"}`}>
+
+        {isSidebarOpen && (
           <div className="text-lg font-bold min-w-0">
             <FullLogo />
           </div>
         )}
 
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-2 w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 active:scale-95 transition-all duration-200 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14967f]"
-        >
+        <button onClick={() => setIsSidebarOpen((prev) => !prev)}
+          className="p-2 w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 active:scale-95 transition-all duration-200 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14967f]">
           <MenuIcon />
         </button>
       </div>
 
       {/* ================= MENU ================= */}
       <div className="flex-1 overflow-y-auto px-3 py-2 space-y-1 sidebar-scroll font-semibold">
+        
         {menu.map((item, i) => {
-          // ================= SUB MENUS =================
+         
+         // ================= SUB MENUS =================
           if (item.submenu) {
             return (
               <div key={i} className="space-y-1">
-                <button
-                  onClick={() => toggleSubmenu(item.name)}
+               
+                <button onClick={() => toggleSubmenu(item.name)}
                   className={`w-full flex items-center justify-between font-semibold px-2 py-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-                  ${collapsed ? "justify-center" : ""}`}
-                >
+                  ${!isSidebarOpen ? "justify-center" : "justify-between"}`}>
+                  
                   <div className="flex items-center gap-3 min-w-0">
-                    {/* ICON */}
                     <div className="w-9 h-9 flex items-center font-semibold justify-center rounded-xl group-hover:bg-white/10 group-hover:scale-105 transition-all duration-200 shrink-0">
                       {item.icon}
                     </div>
 
-                    {!collapsed && (
+                    {/* ITEM NAME */}
+                    {isSidebarOpen && (
                       <span className="text-[13px] font-medium font-semibold truncate">
                         {item.name}
                       </span>
@@ -298,12 +304,12 @@ const Sidebar = () => {
                   </div>
 
                   {/* DROPDOWN ARROW */}
-                  {!collapsed && (
+                  {isSidebarOpen && (
                     <div className="w-7 h-7 flex items-center justify-center rounded-lg group-hover:bg-white/10 transition-all duration-200">
                       {openMenus[item.name as keyof typeof openMenus] ? (
-                        <KeyboardArrowDownIcon fontSize="small"  className="font-semibold"/>
+                        <KeyboardArrowDownIcon fontSize="medium" className="font-semibold"/>
                       ) : (
-                        <KeyboardArrowRightIcon fontSize="small" />
+                        <KeyboardArrowRightIcon fontSize="medium" />
                       )}
                     </div>
                   )}
@@ -311,24 +317,19 @@ const Sidebar = () => {
 
                 {/* SUB MENU ITEMS */}
                 {openMenus[item.name as keyof typeof openMenus] &&
-                  !collapsed && (
+                  isSidebarOpen && (
                     <div className="ml-5 pl-4 border-l border-white/20 space-y-1 py-1">
+                      
                       {item.children.map((child, idx) => (
-                        <Link
-                          key={idx}
-                          href={
-                            child.disabled ? "#" : child.path ? child.path : "#"
-                          }
-                          onClick={(e) => {
-                            if (child.disabled) e.preventDefault();
-                          }}
-                          className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[12px] text-white/80 hover:bg-white/10 hover:text-white transition-all duration-200 group/child"
-                        >
+                        <Link key={idx} href={child.disabled ? "#" : child.path ? child.path : "#"}
+                          onClick={(e) => {if (child.disabled) e.preventDefault(); }}
+                          className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[12px] text-white/80 hover:bg-white/10 hover:text-white transition-all duration-200 group/child">
+                          
                           <div className="flex items-center gap-2 min-w-0">
                             <span className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0 group-hover/child:bg-white transition-colors duration-200" />
-
                             <span className="truncate">{child.name}</span>
                           </div>
+
                         </Link>
                       ))}
                     </div>
@@ -345,28 +346,21 @@ const Sidebar = () => {
             (pathname === item.path || pathname.startsWith(item.path + "/"));
 
           return (
-            <Link
-              key={i}
-              href={item.disabled ? "#" : item.path ? item.path : "#"}
-              onClick={(e) => {
-                if (item.disabled) e.preventDefault();
-              }}
+            <Link key={i} href={item.disabled ? "#" : item.path ? item.path : "#"}
+              onClick={(e) => { if (item.disabled) e.preventDefault(); }}
               className={`flex items-center gap-3 px-2 py-2.5 rounded-xl transition-all duration-200 relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-              ${collapsed ? "justify-center" : ""}
-              ${isActive ? "bg-yellow-100 text-[#14967f] font-semibold shadow-md" : "text-white/90 hover:bg-white/10 hover:translate-x-0.5"}`}
-            >
+              ${!isSidebarOpen ? "justify-center" : "justify-between"}
+              ${isActive ? "bg-yellow-100 text-[#14967f] font-semibold shadow-md" : "text-white/90 hover:bg-white/10 hover:translate-x-0.5"}`}>
               {isActive && (
                 <span className="absolute left-0 top-2 bottom-2 w-[3px] bg-[#14967f] rounded-r-full" />
               )}
 
-              <div
-                className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200 shrink-0
-              ${isActive ? "bg-[#14967f]/10" : "group-hover:bg-white/10 group-hover:scale-105"}`}
-              >
+              <div className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200 shrink-0
+              ${isActive ? "bg-[#14967f]/10" : "group-hover:bg-white/10 group-hover:scale-105"}`}>
                 {item.icon}
               </div>
 
-              {!collapsed && (
+              {isSidebarOpen && (
                 <div className="flex items-center justify-between w-full min-w-0 gap-2">
                   <span className="text-[13px] font-medium truncate font-semibold">
                     {item.name}
@@ -391,7 +385,7 @@ const Sidebar = () => {
             A
           </div>
 
-          {!collapsed && (
+          {isSidebarOpen && (
             <div className="text-sm min-w-0 flex-1">
               <p className="font-semibold text-[13px] truncate">Admin</p>
 
@@ -404,13 +398,13 @@ const Sidebar = () => {
 
         <div
           className={`flex items-center gap-2 pt-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0
-        ${collapsed ? "mt-2" : "mt-3 border-t border-white/10"}`}
-        >
-          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${collapsed ? "w-10 h-8" : "w-40 h-16"}`}>
-            <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0} className="shrink-0 w-full h-100 object-contain" loading="eager"/>
+          ${!isSidebarOpen ? "mt-2" : "mt-3 border-t border-white/10"}`}>
+          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${!isSidebarOpen ? "w-10 h-8" : "w-40 h-16"}`}>
+            <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0}
+              className="shrink-0 w-full h-100 object-contain" loading="eager"/>
           </div>
 
-          {!collapsed && (
+          {isSidebarOpen && (
             <div className="flex flex-col items-center gap-2">
               <h2 className="flex items-center justify-center gap-1 text-yellow-200 text-sm font-bold tracking-wide leading-tight">
                 <span className="font-extrabold">MediNexus</span>

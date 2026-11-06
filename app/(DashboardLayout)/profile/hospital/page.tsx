@@ -7,7 +7,7 @@ import { FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import Image from "next/image";
 import { CiHospital1 } from "react-icons/ci";
-import { PiHospitalDuotone } from "react-icons/pi";
+import { PiHospitalDuotone, PiHeartbeat, PiFirstAidKit, PiTestTube, PiAmbulance } from "react-icons/pi";
 
 const Page = () => {
   const hospital = {
@@ -49,6 +49,35 @@ const Page = () => {
     { label: "ICU Beds", value: hospital.icuBeds, icon: "/users/ICUbed.png" },
     { label: "OT Rooms", value: hospital.operationTheatres, icon: "/hrm_image/hospital-ward.png"},
     { label: "Nurses", value: hospital.rating, icon: "/hrm_image/nurse.png" },
+  ];
+
+
+  // FEATURES
+  const facilities = [
+    {
+      title: "Advanced ICU Unit",
+      icon: PiHeartbeat,
+      iconColor: "text-rose-500",
+      iconBg: "bg-rose-50",
+    },
+    {
+      title: "Modular Operation Theatres",
+      icon: PiFirstAidKit,
+      iconColor: "text-blue-500",
+      iconBg: "bg-blue-50",
+    },
+    {
+      title: "Digital Lab & Diagnostics",
+      icon: PiTestTube,
+      iconColor: "text-violet-500",
+      iconBg: "bg-violet-50",
+    },
+    {
+      title: "Ambulance Service",
+      icon: PiAmbulance,
+      iconColor: "text-emerald-600",
+      iconBg: "bg-emerald-50",
+    },
   ];
 
   return (
@@ -126,34 +155,36 @@ const Page = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {/* LEFT */}
           <div className="md:col-span-2 space-y-6">
-            {/* ABOUT */}
-            <div className="flex items-center bg-white rounded-2xl p-6 shadow-sm gap-3">
-              
-              <img src={hospital.coverImage} className="w-90 h-full md:w-36 md:h-36 bg-white rounded-2xl shadow-lg border border-white object-cover "/>
-              <div className="ml-6">
-                <h2 className="flex gap-2 items-center text-xl font-semibold mb-4 ">
-                  <CiHospital1 className="text-3xl"/> About Hospital
-                </h2>
-                <p className="text-gray-600 text-sm max-w-[550px]">
-                  {hospital.name} is a modern healthcare institution located in
-                  {hospital.address}, offering advanced medical services,
-                  emergency care, and specialized treatments with highly
-                  experienced doctors.
-                </p>
-              </div>
+          <div className="flex flex-col sm:flex-row items-center bg-white rounded-2xl p-4 sm:p-6 shadow-sm gap-4 sm:gap-5">
+
+            <img src={hospital.coverImage} alt={hospital.name}
+              className="w-full h-48 sm:w-36 sm:h-36 shrink-0 bg-white rounded-2xl shadow-lg border border-white object-cover"/>
+
+            <div className="min-w-0 w-full sm:px-2">
+              <h2 className="flex gap-2 items-center text-xl font-semibold mb-3">
+                <CiHospital1 className="text-3xl shrink-0" />
+                About Hospital
+              </h2>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {hospital.name} is a modern healthcare institution located in {hospital.address}, 
+                offering advanced medical services, emergency care, and specialized treatments with highly 
+                experienced doctors.
+              </p>
             </div>
+          </div>
 
            
             {/* SPECIALTIES */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm min-w-0">
               <h2 className="text-lg font-semibold mb-4">Specialties</h2>
 
-              <div className="flex gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                 {hospital.specialties.map((item, i) => (
-                  <div key={i} className="w-100 flex flex-col justify-center items-center px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-100">
-                    <img src={hospital.SpecialImages?.[i]} alt={item} className="w-15 h-15 object-cover rounded-lg"/>
+                  <div key={i} className="min-w-0 flex flex-col justify-center items-center gap-2 px-2 sm:px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src={hospital.SpecialImages?.[i]} alt={item} className="w-12 h-12 sm:w-15 sm:h-15 object-cover rounded-lg"/>
 
-                    <p className="text-sm font-medium text-emerald-800">
+                    <p className="text-xs sm:text-sm font-medium text-emerald-800 text-center break-words">
                       {item}
                     </p>
                   </div>
@@ -173,55 +204,80 @@ const Page = () => {
           <div className="space-y-6">
             {/* CONTACT */}
             <div className="bg-white rounded-2xl p-5 shadow-sm">
-              <h3 className="font-semibold mb-3">Contact Info</h3>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-semibold mb-3">Contact Information</h3>
+                <h3 className="font-semibold mb-3 text-emerald-600 px-2 py-1 bg-emerald-100 rounded-full text-[15px]">Verified</h3>
+              </div>
 
-              <div className="flex flex-col space-y-2">
-                <div className="flex  space-x-4 items-center ">
-                  <FaPhone className="text-blue-600 text-xl" />
-                  <p className="text-sm text-gray-600"> {hospital.phone}</p>
-                </div>
-                <div className="flex  space-x-4 items-center ">
-                  <MdEmail className="text-yellow-500 text-xl" />
-                  <p className="text-sm text-gray-600 mt-2">{hospital.email}</p>
-                </div>
-                <div className="flex  space-x-4 items-center ">
-                  <FaLocationDot className="text-red-600 text-xl" />
 
-                  <p className="text-sm text-gray-600 mt-2">
-                    {hospital.address}
-                  </p>
-                </div>
+              <div className="flex flex-col space-y-5">
+                <a href={`tel:${hospital.phone}`} target="_blank" className="flex flex-col hover:bg-gray-100 rounded-lg p-2">
+                  <p className="text-[15px] justify-left flex ml-7 text-gray-600"> Phone Number</p>
+                  <div className="flex items-center space-x-2">
+                    <FaPhone className="text-blue-600 text-xl" />
+                    <p className="text-[16px] font-semibold text-gray-600">{hospital.phone}</p>
+                  </div>
+                </a>   
+                
+                <a href={`mailto:${hospital.email}`} target="_blank" className="flex flex-col hover:bg-gray-100 rounded-lg p-2">
+                  <p className="text-[15px] justify-left flex ml-7 text-gray-600"> Email</p>
+                  <div className="flex items-center space-x-2">
+                    <MdEmail className="text-yellow-500 text-xl" />
+                    <p className="text-[16px] font-semibold text-gray-600"> {hospital.email}</p>
+                  </div>
+                </a>
+
+                {/* ADDRESS */}
+                <a href={`https://maps.google.com/?q=${encodeURIComponent(hospital.address)}`} target="_blank" className="flex flex-col hover:bg-gray-100 rounded-lg p-2">
+                  <p className="text-[15px] justify-left flex ml-7 text-gray-600"> Address</p>
+                  <div className="flex items-center space-x-2">
+                    <FaLocationDot className="text-red-600 text-xl" />
+                    <p className="text-[16px] font-semibold text-gray-600">
+                      {hospital.address}
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
 
-            {/* QUICK FEATURES */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm">
-              <h3 className="font-semibold mb-3 flex items-center gap-2">
-                <PiHospitalDuotone className="text-2xl" /> Facilities
-              </h3>
+            {/* FACILITIES */}
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <PiHospitalDuotone className="text-2xl text-emerald-600" />
 
-              <div className=" flex flex-col space-y-4 text-sm text-gray-600">
-                <div className="flex space-x-6 items-center">
-                  <img src={"/hrm_image/stethoscope.png"} className="h-6 w-6" />
-                  <span>Advanced ICU Unit</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-800">
+                      Facilities
+                    </h3>
+                    <p className="text-xs text-gray-400">
+                      Hospital services & infrastructure
+                    </p>
+                  </div>
                 </div>
-                <div className="flex space-x-6 items-center">
-                  <img src={"/hrm_image/stethoscope.png"} className="h-6 w-6" />
-                  <span>Modular Operation Theatres</span>
-                </div>
+              </div>
 
-                <div className="flex space-x-6 items-center">
-                  <img src={"/hrm_image/stethoscope.png"} className="h-6 w-6" />
-                  <span>24/7 Emergency Room</span>
-                </div>
-                <div className="flex space-x-6 items-center">
-                  <img src={"/hrm_image/stethoscope.png"} className="h-6 w-6" />
-                  <span>Digital Lab & Diagnostics</span>
-                </div>
-                <div className="flex space-x-6 items-center">
-                  <img src={"/hrm_image/stethoscope.png"} className="h-6 w-6" />
-                  <span>Ambulance Service</span>
-                </div>
+              {/* FACILITIES LIST */}
+              <div className="space-y-1">
+                {facilities.map((facility, index) => {
+                  const Icon = facility.icon;
+
+                  return (
+                    <div key={index}
+                      className="flex items-center gap-3 p-2.5 border border-transparent rounded-xl hover:bg-emerald-50/50 hover:border-emerald-100 transition-all duration-200">
+                      
+                      <div className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${facility.iconBg}`}>
+                        <Icon className={`text-xl ${facility.iconColor}`}/>
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-gray-800">
+                          {facility.title}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

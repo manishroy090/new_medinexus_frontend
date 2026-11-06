@@ -381,7 +381,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
 
       {/* ================= FOOTER ================= */}
       <div className="border-t border-white/10 px-3 pt-3 pb-3 shrink-0">
-        <div className="fixed bottom-40 flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
+        <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
           <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 transition duration-200 shadow-sm ring-2 ring-white/15">
             A
           </div>

@@ -234,7 +234,8 @@ const menu = [
   },
 ];
 
-const Sidebar = ({isSidebarOpen, setIsSidebarOpen,}: SidebarProps) => {
+
+const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
 
   // const [collapsed, setCollapsed] = useState(false);
@@ -380,8 +381,8 @@ const Sidebar = ({isSidebarOpen, setIsSidebarOpen,}: SidebarProps) => {
 
       {/* ================= FOOTER ================= */}
       <div className="border-t border-white/10 px-3 pt-3 pb-3 shrink-0">
-        <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
-          <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 shadow-sm ring-2 ring-white/15">
+        <div className="fixed bottom-40 flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
+          <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 transition duration-200 shadow-sm ring-2 ring-white/15">
             A
           </div>
 
@@ -396,12 +397,11 @@ const Sidebar = ({isSidebarOpen, setIsSidebarOpen,}: SidebarProps) => {
           )}
         </div>
 
-        <div
-          className={`flex items-center gap-2 pt-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0
+        <div className={`flex items-center gap-2 pt-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0
           ${!isSidebarOpen ? "mt-2" : "mt-3 border-t border-white/10"}`}>
-          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${!isSidebarOpen ? "w-10 h-8" : "w-40 h-16"}`}>
-            <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0}
-              className="shrink-0 w-full h-100 object-contain" loading="eager"/>
+          
+          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${!isSidebarOpen ? "w-25 h-8" : "w-40 h-16"}`}>
+            <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0} className="relative shrink-0 w-full h-100 object-contain" loading="eager"/>
           </div>
 
           {isSidebarOpen && (

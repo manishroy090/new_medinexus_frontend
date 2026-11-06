@@ -5,6 +5,9 @@ import { FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import Image from "next/image";
+import { CiHospital1 } from "react-icons/ci";
+import { PiHospitalDuotone } from "react-icons/pi";
 
 const Page = () => {
   const hospital = {
@@ -27,76 +30,75 @@ const Page = () => {
       "Neurology",
       "Orthopedics",
       "Pediatrics",
-      "General Surgery",
+      "Surgery",
       "ICU Care",
+    ],
+    SpecialImages: [
+      "/images/profile/heart.jpg",
+      "/images/profile/brain.jpg",
+      "/images/profile/bone.png",
+      "/images/profile/baby.jpg",
+      "/images/profile/doctor.jpg",
+      "/images/profile/ICU.jpg",
     ],
   };
 
   const stats = [
     { label: "Doctors", value: hospital.doctors, icon: "/users/doctor.png" },
     { label: "Beds", value: hospital.beds, icon: "/hrm_image/bed.png" },
-    { label: "ICU Beds", value: hospital.icuBeds, icon: "/hrm_image/bed.png" },
-    {
-      label: "OT Rooms",
-      value: hospital.operationTheatres,
-      icon: "/hrm_image/hospital-ward.png",
-    },
+    { label: "ICU Beds", value: hospital.icuBeds, icon: "/users/ICUbed.png" },
+    { label: "OT Rooms", value: hospital.operationTheatres, icon: "/hrm_image/hospital-ward.png"},
     { label: "Nurses", value: hospital.rating, icon: "/hrm_image/nurse.png" },
   ];
 
   return (
     <div className="min-h-screen bg-slate-100">
+      
       {/* COVER */}
-      <div className="relative h-64 md:h-80 w-full">
-        <img src={hospital.coverImage} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/30" />
+      <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+        <img src={hospital.coverImage} className="w-full h-full object-cover object-center"/>
+
+        {/* WHITE GRADIENT IMAGE OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/25 to-white/10"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 -mt-64 md:-mt-80 relative z-10">
         {/* HEADER */}
-        <div className="bg-white rounded-3xl shadow-xl p-6 flex flex-col md:flex-row gap-6">
-          <img
-            src="/hrm_image/newlogo.svg"
-            className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-md"
-          />
+        <div className="p-6 flex flex-col md:flex-row gap-6 relative items-center min-h-64 md:min-h-80 -ml-5">
+          <Image src="/hrm_image/newlogo.svg" alt={`${hospital.name} logo`} width={144} height={144} className="w-32 h-32 md:w-36 md:h-36 bg-white rounded-2xl shadow-lg border border-white object-contain"/>
 
           <div className="flex-col space-y-2">
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className="text-4xl font-bold text-slate-900 tracking-tight">
               {hospital.name}
             </h1>
-            <p className="text-gray-500">{hospital.tagline}</p>
-            <span className="flex  items-center space-x-4">
-              <FaLocationDot className="text-red-600 text-xl" />
-              <p className="text-sm text-gray-500 mt-1"> {hospital.address}</p>
+
+            <p className="text-gray-700 font-semibold text-xl">
+              {hospital.tagline}
+            </p>
+
+            <span className="flex items-center space-x-2">
+              <FaLocationDot className="text-red-500 text-xl" />
+              <p className="text-sm text-slate-700 font-semibold mt-1">
+                {hospital.address}
+              </p>
             </span>
 
-            <div className="flex flex-wrap gap-2 mt-3">
-              
-              
-              <div className="flex items-center justify-center bg-emerald-50 text-emerald-700 ">
+            {/* RAITING AND AVAILABILITY */}
+            <div className="flex flex-wrap gap-3 mt-3">
+              <div className="flex items-center justify-center bg-amber-50 border border-amber-100 text-amber-700 px-3 py-2 rounded-full">
                 <span>
-                  <FaStar className="text-yellow-200 text-xl" />
+                  <FaStar className="text-amber-500 text-lg" />
                 </span>
-                <span className="px-4">
+                <span className="px-3 font-semibold text-sm">
                   {hospital.rating}
                 </span>
               </div>
 
-
-              <div className="px-3 py-1 flex items-center space-x-3 rounded-full bg-emerald-50 text-emerald-700 text-sm">
-                <img src={"/hrm_image/siren.png"} className="h-6 w-6" />
-                <span className="p-1">Emergency 24/7</span>
+              <div className="px-3 py-2 flex items-center space-x-3 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span className="font-semibold">Open 24/7</span>
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <button className="bg-[#14967f] text-white px-5 py-2 rounded-xl hidden">
-              Book Appointment
-            </button>
-            <button className="border px-5 py-2 rounded-xl hidden">
-              Call Now
-            </button>
           </div>
         </div>
 
@@ -125,30 +127,40 @@ const Page = () => {
           {/* LEFT */}
           <div className="md:col-span-2 space-y-6">
             {/* ABOUT */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h2 className="text-lg font-semibold mb-2">About Hospital</h2>
-              <p className="text-gray-600">
-                {hospital.name} is a modern healthcare institution located in{" "}
-                {hospital.address}, offering advanced medical services,
-                emergency care, and specialized treatments with highly
-                experienced doctors.
-              </p>
+            <div className="flex items-center bg-white rounded-2xl p-6 shadow-sm gap-3">
+              
+              <img src={hospital.coverImage} className="w-90 h-full md:w-36 md:h-36 bg-white rounded-2xl shadow-lg border border-white object-cover "/>
+              <div className="ml-6">
+                <h2 className="flex gap-2 items-center text-xl font-semibold mb-4 ">
+                  <CiHospital1 className="text-3xl"/> About Hospital
+                </h2>
+                <p className="text-gray-600 text-sm max-w-[550px]">
+                  {hospital.name} is a modern healthcare institution located in
+                  {hospital.address}, offering advanced medical services,
+                  emergency care, and specialized treatments with highly
+                  experienced doctors.
+                </p>
+              </div>
             </div>
 
+           
             {/* SPECIALTIES */}
             <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h2 className="text-lg font-semibold mb-3">Specialties</h2>
-              <div className="flex flex-wrap gap-2">
+              <h2 className="text-lg font-semibold mb-4">Specialties</h2>
+
+              <div className="flex gap-4">
                 {hospital.specialties.map((item, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm"
-                  >
-                    {item}
-                  </span>
+                  <div key={i} className="w-100 flex flex-col justify-center items-center px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <img src={hospital.SpecialImages?.[i]} alt={item} className="w-15 h-15 object-cover rounded-lg"/>
+
+                    <p className="text-sm font-medium text-emerald-800">
+                      {item}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
+
 
             {/* EMERGENCY */}
             <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4">
@@ -164,28 +176,29 @@ const Page = () => {
               <h3 className="font-semibold mb-3">Contact Info</h3>
 
               <div className="flex flex-col space-y-2">
+                <div className="flex  space-x-4 items-center ">
+                  <FaPhone className="text-blue-600 text-xl" />
+                  <p className="text-sm text-gray-600"> {hospital.phone}</p>
+                </div>
+                <div className="flex  space-x-4 items-center ">
+                  <MdEmail className="text-yellow-500 text-xl" />
+                  <p className="text-sm text-gray-600 mt-2">{hospital.email}</p>
+                </div>
+                <div className="flex  space-x-4 items-center ">
+                  <FaLocationDot className="text-red-600 text-xl" />
 
-             
-              <div className="flex  space-x-4 items-center ">
-                <FaPhone className="text-blue-600 text-xl" />
-                <p className="text-sm text-gray-600"> {hospital.phone}</p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    {hospital.address}
+                  </p>
+                </div>
               </div>
-              <div className="flex  space-x-4 items-center ">
-                <MdEmail className="text-yellow-500 text-xl" />
-                <p className="text-sm text-gray-600 mt-2">{hospital.email}</p>
-              </div>
-              <div className="flex  space-x-4 items-center ">
-                <FaLocationDot className="text-red-600 text-xl" />
-
-                <p className="text-sm text-gray-600 mt-2">{hospital.address}</p>
-              </div>
-               </div>
-
             </div>
 
             {/* QUICK FEATURES */}
             <div className="bg-white rounded-2xl p-5 shadow-sm">
-              <h3 className="font-semibold mb-3">Facilities</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2">
+                <PiHospitalDuotone className="text-2xl" /> Facilities
+              </h3>
 
               <div className=" flex flex-col space-y-4 text-sm text-gray-600">
                 <div className="flex space-x-6 items-center">

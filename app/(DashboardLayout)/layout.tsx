@@ -37,7 +37,7 @@ export default function Layout({
     <div className="h-screen w-screen overflow-hidden bg-gray-100">
 
       {/* ================= SIDEBAR ================= */}
-      <aside className={`fixed left-0 top-0 z-40 hidden xl:block h-screen transition-all duration-300 ${isSidebarOpen ? "w-72" : "w-20"}`}>
+      <aside className={`fixed left-0 top-0 z-40 hidden xl:block h-screen transition-all overflow-hidden duration-300 ${isSidebarOpen ? "w-72" : "w-22"}`}>
         <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
       </aside>
 

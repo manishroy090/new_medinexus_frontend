@@ -23,7 +23,7 @@ const Header = () => {
     <>
       <header
         className={`
-          w-full z-50 transition-all duration-300 border-b border-gray-100
+          z-50 transition-all duration-300 border-b border-gray-100
           ${isSticky ? "fixed top-0 bg-white shadow-sm" : "relative bg-white"}
         `}
       >
@@ -74,7 +74,7 @@ const Header = () => {
             <SheetTitle>Sidebar</SheetTitle>
           </VisuallyHidden>
 
-          <SidebarLayout onClose={() => setIsOpen(false)} />
+          <SidebarLayout isSidebarOpen={isOpen} setIsSidebarOpen={setIsOpen} onClose={() => setIsOpen(false)}/>
         </SheetContent>
       </Sheet>
     </>

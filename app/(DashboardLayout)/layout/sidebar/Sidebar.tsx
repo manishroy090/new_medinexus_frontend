@@ -26,6 +26,7 @@ import path from "path";
 interface SidebarProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: () => void;
 }
 
 const menu = [
@@ -187,15 +188,15 @@ const menu = [
   },
 
   // ================= ACCOUNTS =================
-  {
+ {
     name: "Accounts",
     icon: <AccountBalanceWalletIcon />,
     submenu: true,
     children: [
-      { name: "Invoices" },
-      { name: "Billing" },
-      { name: "Expenses" },
-      { name: "Insurance Claims" },
+      { name: "Invoices", path: "/accounts/invoices", disabled: false },
+      { name: "Billing", path: "#", disabled: false },
+      { name: "Expenses", path: "#", disabled: false },
+      { name: "Insurance Claims", path: "#", disabled: false },
     ],
   },
 
@@ -235,10 +236,8 @@ const menu = [
 ];
 
 
-const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
+const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, onClose }: SidebarProps) => {
   const pathname = usePathname();
-
-  // const [collapsed, setCollapsed] = useState(false);
 
   const [openMenus, setOpenMenus] = useState({
     Laboratory: false,
@@ -257,7 +256,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
 
   return (
     <div
-      className={`h-screen flex flex-col transition-all duration-300 text-white overflow-hidden shadow-2xl border-r border-white/10
+      className={`h-screen w-full min-w-0 flex flex-col transition-all duration-300 text-white overflow-hidden shadow-2xl border-r border-white/10
         ${isSidebarOpen ? "w-72" : "w-20"}`} style={{ backgroundColor: "#14967f" }}>
       
       {/* ================= LOGO ================= */}
@@ -271,14 +270,14 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
           </div>
         )}
 
-        <button onClick={() => setIsSidebarOpen((prev) => !prev)}
+        <button onClick={() => { if (onClose) { onClose(); } else { setIsSidebarOpen?.((prev) => !prev); }}}
           className="p-2 w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 active:scale-95 transition-all duration-200 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14967f]">
           <MenuIcon />
         </button>
       </div>
 
       {/* ================= MENU ================= */}
-      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-1 sidebar-scroll font-semibold">
+      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-[3px] sidebar-scroll font-semibold">
         
         {menu.map((item, i) => {
          
@@ -380,9 +379,9 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
       </div>
 
       {/* ================= FOOTER ================= */}
-      <div className="border-t border-white/10 px-3 pt-3 pb-3 shrink-0">
-        <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-200">
-          <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 transition duration-200 shadow-sm ring-2 ring-white/15">
+      <div className="grid grid-cols-1 gap- border-t border-white/10 px-3 pt-1 pb-3 mb-5 shrink-0 transition-all duration-300">
+        <div className="flex items-center px-2 py-1 rounded-xl hover:bg-white/10 transition-all duration-200">
+          <div className="w-10 h-10 bg-white text-[#14967f] flex items-center justify-center rounded-full font-bold shrink-0 transition-all ease-in-out duration-200 shadow-sm ring-2 ring-white/15">
             A
           </div>
 
@@ -397,18 +396,17 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
           )}
         </div>
 
-        <div className={`flex items-center gap-2 pt-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0
-          ${!isSidebarOpen ? "mt-2" : "mt-3 border-t border-white/10"}`}>
+        <div className="flex items-center gap-2 pb-3 rounded-xl transition-all duration-300 cursor-default flex-col justify-center text-center shrink-0" >
           
-          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${!isSidebarOpen ? "w-25 h-8" : "w-40 h-16"}`}>
+          <div className={`flex items-center justify-center overflow-hidden transition-all duration-300 ${!isSidebarOpen ? "w-20 h-8" : "w-40 h-16"}`}>
             <Image src="/hrm_image/heartrate.svg" alt="Logo" width={0} height={0} className="relative shrink-0 w-full h-100 object-contain" loading="eager"/>
           </div>
 
-          {isSidebarOpen && (
-            <div className="flex flex-col items-center gap-2">
-              <h2 className="flex items-center justify-center gap-1 text-yellow-200 text-sm font-bold tracking-wide leading-tight">
-                <span className="font-extrabold">MediNexus</span>
-                <span className="font-semibold">Healthcare</span>
+          {/* {isSidebarOpen && ( */}
+            <div className="flex flex-col items-center gap-3">
+              <h2 className="flex flex-wrap items-center justify-center gap-1 text-yellow-200 text-sm tracking-wide leading-tight">
+                <span>MediNexus</span>
+                <span>Healthcare</span>
               </h2>
 
               <div className="flex items-center gap-2">
@@ -423,7 +421,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
                 <span className="w-5 h-px bg-emerald-300/40" />
               </div>
             </div>
-          )}
+          {/* )} */}
         </div>
       </div>
     </div>

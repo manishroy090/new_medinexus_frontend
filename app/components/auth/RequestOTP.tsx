@@ -38,6 +38,7 @@ export const RequestOTP = () => {
     }
   };
 
+  
   // Function to verify OTP
   const verifyOtp = () => {
     // if OTP entered by the user is same as the OTP generated, give a alert message to the user.
@@ -48,12 +49,13 @@ export const RequestOTP = () => {
     }
   };
 
-
-
   // Auto forward while typing
-const inputs = useRef<(HTMLInputElement | null)[]>([]);
+  const inputs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement> , index: number): void => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+  ): void => {
     const digit = e.target.value.replace(/\D/g, "").slice(-1);
 
     const otpArray = userOtp.split("");
@@ -66,7 +68,10 @@ const inputs = useRef<(HTMLInputElement | null)[]>([]);
       inputs.current[index + 1]?.focus();
     }
   };
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number):void => {
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number,
+  ): void => {
     if (e.key === "Backspace" && !e.currentTarget.value && index > 0) {
       inputs.current[index - 1]?.focus();
     }
@@ -74,32 +79,30 @@ const inputs = useRef<(HTMLInputElement | null)[]>([]);
 
   return (
     <>
-      <div className="flex ml-25">
+      <div className="flex flex-col lg:flex-row w-full px-4 sm:px-2 lg:justify-center lg:gap-0">
         {/* LEFT SIDE */}
-        <div className="flex flex-col items-center h-[calc(90vh-60px)] w-[45%] mt-15 ml-10 pt-10 bg-gradient-to-br from-yellow-400 via-yellow-400 to-cyan-500 rounded-full">
-          <h3 className="text-white px-6 py-3 mb-12 mt-6 text-center border border-white rounded-lg font-semibold shadow-lg text-base tracking-widest bg-gradient-to-r from-yellow-400 to-green-500">
+        <div className=" flex flex-col items-center w-full lg:w-[45%] min-h-[380px] sm:min-h-[480px] lg:h-[calc(90vh-60px)] lg:min-h-[560px] mt-2 lg:mt-15 ml-0 lg:ml-10 pt-6 sm:pt-10 bg-gradient-to-br from-yellow-400 via-yellow-400 to-cyan-500 rounded-3xl lg:rounded-full overflow-hidden">
+          <h3 className="text-white px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-12 mt-4 sm:mt-6 text-center border border-white rounded-lg font-semibold shadow-lg text-sm sm:text-base tracking-widest bg-gradient-to-r from-yellow-400 to-green-500">
             Securely open your account
           </h3>
 
-          <div
-            className="mt-8 min-h-0 w-full flex-1 bg-contain bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/hrm_image/emailverification.svg')",
-            }}
+          <div className=" mt-4 sm:mt-8 min-h-0 w-full flex-1 bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/hrm_image/emailverification.svg')",}}
           />
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center justify-center w-1/2 relative right-10">
-          <div className="w-full max-w-md rounded-3xl border border-gray-100 bg-white p-8 shadow-xl shadow-gray-200/60 sm:p-10">
+        <div className=" flex items-center justify-center w-full lg:w-1/2 relative right-0 lg:right-10 py-4 sm:py-6 lg:py-0">
+          <div className="w-full max-w-md rounded-3xl border border-gray-100 bg-white p-5 sm:p-8 shadow-xl shadow-gray-200/60 sm:p-10">
+            
             {/* OTP Verification Form */}
             <div className="w-full">
-              <div className="flex items-center mb-">
-                <div className=" bg-emerald-50 text-emerald-600 h-14 w-14 mb-5 flex items-center justify-center rounded-2xl">
+              <div className="flex items-center mb-2">
+                <div className="bg-emerald-50 text-emerald-600 h-12 w-12 sm:h-14 sm:w-14 mb-5 flex items-center justify-center rounded-2xl shrink-0">
                   <IoMailUnreadSharp className="w-7 h-auto rounded-xl" />
                 </div>
 
-                <h2 className="text-[24px] font-bold text-gray-800 pb-5 ml-2 tracking-tight">
+                <h2 className="text-xl sm:text-[24px] font-bold text-gray-800 pb-5 ml-2 tracking-tight">
                   Check your Email Address
                 </h2>
               </div>
@@ -114,26 +117,26 @@ const inputs = useRef<(HTMLInputElement | null)[]>([]);
                   Verification code
                 </label>
 
-                <div className="w-full flex items-center justify-between gap-3 mt-2">
+                <div className="w-full flex items-center justify-between gap-1.5 sm:gap-3 mt-2">
                   {[0, 1, 2, 3, 4, 5].map((index) => (
                     <input
                       key={index}
                       type="text"
-                      ref={(el) => {inputs.current[index] = el}}
+                      ref={(el) => {
+                        inputs.current[index] = el;
+                      }}
                       inputMode="numeric"
                       maxLength={1}
                       onChange={(e) => handleChange(e, index)}
                       onKeyDown={(e) => handleKeyDown(e, index)}
                       value={userOtp[index] || ""}
-                      // onChange={(e) => handleUseremailAddress(e)}
-                      className="h-12 w-0 min-w-0 flex-1 rounded-xl border-2 border-gray-200 bg-gray-50 text-center t text-xl font-bold text-emerald-600 outline-none transition-all duration-200 hover:border-emerald-300 focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100 sm:h-14 sm:rounded-2xl sm:text-2xl"
+                      className="h-12 w-0 min-w-0 flex-1 rounded-xl border-2 border-gray-200 bg-gray-50 text-center text-xl font-bold text-emerald-600 outline-none transition-all duration-200 hover:border-emerald-300 focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100 sm:h-14 sm:rounded-2xl sm:text-2xl"
                     />
                   ))}
                 </div>
 
-                <button
-                  onClick={verifyOtp}
-                  className="w-full flex justify-center bg-yellow-200 rounded-xl mt-7 py-4 font-semibold text-emerald-600 shadow-lg hover:bg-yellow-400 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                <button onClick={verifyOtp}
+                  className="w-full flex justify-center bg-yellow-200 rounded-xl mt-7 py-3 sm:py-4 font-semibold text-emerald-600 shadow-lg hover:bg-yellow-400 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
                 >
                   Verify OTP
                 </button>
